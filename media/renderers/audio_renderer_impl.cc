@@ -1416,24 +1416,21 @@ int AudioRendererImpl::Render(base::TimeDelta delay,
                  << ", effective_playback_rate=" << effective_playback_rate;
 
         // Neural-Chromium: Inject audio into Agent Shared Memory
-        // FIXME: Compilation error with reinterpret_cast/namespace. Temporarily disabled.
-        /*
         if (frames_filled > 0) {
            agent_interface::AudioHeader header;
            header.magic_number = 0x41554449;
            header.sample_rate = audio_parameters_.sample_rate();
-           header.channels = audio_bus->channels();
+           header.channels = 1; // Force Mono to avoid allocation in RT thread
            header.samples_per_frame = frames_filled;
-           header.timestamp_us = (base::TimeTicks::Now() - base::TimeTicks()).InMicroseconds(); // Approximate
+           header.timestamp_us = (delay_timestamp - base::TimeTicks()).InMicroseconds();
            header.format = 1; // FLOAT_32BIT
            header.frame_index = 0; // TODO: Increment
 
            agent_interface::AgentSharedMemory::GetInstance()->WriteAudio(
                header,
-               reinterpret_cast<const uint8_t*>(audio_bus->channel(0)), 
-               frames_filled * audio_bus->channels() * sizeof(float)); 
+               reinterpret_cast<const uint8_t*>(audio_bus->channel(0).data()), 
+               frames_filled * sizeof(float)); 
         }
-        */
       }
     }
 
