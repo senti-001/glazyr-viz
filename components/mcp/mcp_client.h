@@ -6,7 +6,7 @@
 #include <vector>
 #include <map>
 
-#include "base/callback.h"
+#include "base/functional/callback.h"
 #include "base/memory/weak_ptr.h"
 #include "base/values.h"
 #include "components/mcp/mcp_transport.h"
