@@ -244,7 +244,7 @@ We benchmark against real-world automation scenarios that break traditional tool
 
 | System | Avg Time | Success Rate | Steps | Notes |
 |--------|----------|--------------|-------|-------|
-| **Neural-Chromium** | **49.6s** | ✅ **100%** | 12 | Local VLM with Shared Memory |
+| **Neural-Chromium** | **~50s** | ✅ **100%** | 12+ | Multi-turn VLM loop (Handles stairs, buses, etc.) |
 | Playwright | - | ❌ 0% | 2 | Blocked indefinitely |
 
 ### Task 2: Auth + Data Extraction
