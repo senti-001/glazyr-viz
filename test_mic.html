@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Neural Audio Test (Muted)</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background: #222;
+            color: #fff;
+            text-align: center;
+            padding: 50px;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 20px;
+            cursor: pointer;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+
+        #status {
+            margin-top: 20px;
+            color: #aaa;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>🎤 Neural Audio Verification</h1>
+    <p>This page requests microphone access and sets the volume to <b>0 (muted)</b>.</p>
+    <p>The goal is to verify that the <strong>Neural Agent</strong> still hears you loud and clear without echo.</p>
+
+    <div style="margin: 20px;">
+        <label for="vol">Volume: <span id="vol-val">0</span></label>
+        <input type="range" id="vol" name="vol" min="0" max="1" step="0.001" value="0" style="width: 300px;">
+    </div>
+
+    <button id="startBtn">Start Microphone</button>
+
+    <div id="status">Microphone Idle</div>
+
+    <script>
+        const status = document.getElementById('status');
+        const startBtn = document.getElementById('startBtn');
+        const volSlider = document.getElementById('vol');
+        const volDisplay = document.getElementById('vol-val');
+
+        let audioCtx;
+        let stream;
+        let source;
+        let gainNode;
+
+        volSlider.addEventListener('input', (e) => {
+            const v = parseFloat(e.target.value);
+            volDisplay.innerText = v;
+            if (gainNode) {
+                gainNode.gain.value = v;
+            }
+        });
+
+        startBtn.onclick = async () => {
+            try {
+                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+
+                source = audioCtx.createMediaStreamSource(stream);
+                gainNode = audioCtx.createGain();
+
+                // Set initial volume from slider
+                gainNode.gain.value = parseFloat(volSlider.value);
+
+                source.connect(gainNode);
+                gainNode.connect(audioCtx.destination);
+
+                status.innerText = "Microphone Active! Volume controlled by slider.";
+                status.style.color = "#00ff00";
+                startBtn.disabled = true;
+            } catch (e) {
+                status.innerText = "Error: " + e.message;
+                status.style.color = "red";
+            }
+        };
+    </script>
+</body>
+
+</html>
