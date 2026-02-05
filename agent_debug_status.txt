@@ -17,3 +17,4 @@ CDP CONNECTED. Tabs: 1
 CDP FAILED: HTTPConnectionPool(host='127.0.0.1', port=9222): Max retries exceeded with url: /json (Caused by NewConnectionError("HTTPConnection(host='127.0.0.1', port=9222): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
 CDP CONNECTED. Tabs: 1
 CDP CONNECTED. Tabs: 1
+CDP CONNECTED. Tabs: 1
