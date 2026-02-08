@@ -1,0 +1,58 @@
+syntax = "proto3";
+
+package neural_chromium;
+
+option optimize_for = LITE_RUNTIME;
+
+// Sent by agents to Neural-Chromium via NATS to trigger commands.
+message Action {
+  uint32 sequence_id = 1;
+  int64 timestamp_us = 2;
+  
+  oneof action {
+    NavigateAction navigate = 3;
+    InputAction input = 4;
+    InteractionAction interaction = 5;
+    ScriptAction script = 6;
+  }
+}
+
+message NavigateAction {
+  string url = 1;
+  bool new_tab = 2;
+}
+
+message InputAction {
+  // Direct text injection (e.g., Omnibox or text field)
+  string text = 1;
+  bool submit = 2; // Press Enter after injection
+}
+
+message InteractionAction {
+  enum ActionType {
+    CLICK_LEFT = 0;
+    CLICK_RIGHT = 1;
+    CLICK_MIDDLE = 2;
+    DCLICK_LEFT = 3;
+    SCROLL = 4;
+    HOVER = 5;
+    KEY_PRESS = 6;
+  }
+  ActionType type = 1;
+  
+  // Coordinates for Clicks/Hover
+  int32 x = 2;
+  int32 y = 3;
+  
+  // Scroll Deltas
+  int32 scroll_dx = 4;
+  int32 scroll_dy = 5;
+  
+  // Keyboard (for KEY_PRESS)
+  string key_code = 6; // e.g., "Enter", "ArrowDown"
+  int32 modifiers = 7; // Bitmask of Ctrl, Alt, Shift
+}
+
+message ScriptAction {
+  string script = 1;
+}

@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package neural_chromium;
+
+option optimize_for = LITE_RUNTIME;
+
+// Corresponds to the VideoHeader C++ struct used in shared memory.
+message VideoHeader {
+  uint32 magic = 1;      // 0x5649444F ("VIDO")
+  uint32 width = 2;
+  uint32 height = 3;
+  uint32 stride = 4;
+  uint32 format = 5;     // 1=ARGB, 2=ABGR
+  int64 timestamp_us = 6;
+}
+
+// Corresponds to the AudioHeader C++ struct used in shared memory.
+message AudioHeader {
+  uint32 magic = 1;       // 0x41554449 ("AUDI")
+  uint32 sample_rate = 2; // e.g., 48000
+  uint32 channels = 3;    // 1 (mono) or 2 (stereo)
+  uint32 frames = 4;      // Number of float32 samples
+  int64 timestamp_us = 5;
+}

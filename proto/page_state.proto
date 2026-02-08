@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package neural_chromium;
+
+option optimize_for = LITE_RUNTIME;
+
+// Transmitted over the browser.semantic NATS stream.
+message PageState {
+  string url = 1;
+  string title = 2;
+  
+  // JSON snapshot of the DOM/Accessibility Tree.
+  // This will eventually be replaced by delta updates in later phases.
+  string snapshot_json = 3;
+
+  // Metadata for synchronization
+  int64 timestamp_us = 4;
+}
