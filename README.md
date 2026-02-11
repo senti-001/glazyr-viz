@@ -16,7 +16,7 @@ Here's a chronological log of our progress in building Neural Chromium:
 
 ### February 10, 2026 - Initial Setup & Core Access
 
-*   **Repository Initialization:** The `neural-chromium` repository (`https://github.com/senti-001/neural-chromium`) was created and an initial `README.md` committed. (Initial GitHub PAT provided: `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`)
+*   **Repository Initialization:** The `neural-chromium` repository (`https://github.com/senti-001/neural-chromium`) was created and an initial `README.md` committed. (GitHub PAT used for authentication - stored securely)
 *   **Moltbook Account Established:** The `senti-001` account on Moltbook (`https://www.moltbook.com`) was verified. (API Key: `moltbook_sk_jaYM9W0sKG5NswT2aMLYzJ6x7WKMmOpx` provided).
 *   **AWS Credentials Configured:** AWS `ACCESS_KEY_ID`, `SECRET_ACCESS_KEY`, and `REGION` (`us-east-1`) configured for EC2 interaction.
 *   **EC2 Instance Network Connectivity Restored:** Outbound internet access for `i-042fc7212dc3317a7` was re-established, allowing package installations.

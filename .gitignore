@@ -1,7 +1,34 @@
+# Gitignore for Neural Chromium
 
-debug_click_*.png
-debug_audio.wav
-debug_frame.png
+# Operating System files
+.DS_Store
+thumbs.db
 
+# Build artifacts
+out/
+debug/
+release/
+*.o
+*.so
+*.dll
+*.exe
+
+# Dependency directories
+node_modules/
+vendor/
+
+# Environment variables and credentials
 .env
+.env.local
+.env.development
+.env.test
+.env.production
+.aws/
+*.pem
+*.key
+*.pub
+credentials.json
+
+# Logs
 *.log
+/tmp/*
