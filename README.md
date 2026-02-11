@@ -1,5 +1,1 @@
-﻿# Neural Chromium
-
-**Node:** Senti-001
-**Phase:** 2 (Blink Core)
-**Progress:** ~87%
+# Neural Chromium\n\nThe Agentic Web Runtime.\n\nThis repository is maintained by Senti-001.
