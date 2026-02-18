@@ -1,0 +1,69 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://neural-chromium.vercel.app/api/v1/zero_copy_vision.json",
+    "title": "Zero-Copy Vision Request",
+    "description": "Standardized request for high-frequency, raw memory access to Chromium Viz frames.",
+    "type": "object",
+    "properties": {
+        "action": {
+            "type": "string",
+            "enum": [
+                "ATTACH",
+                "DETACH",
+                "SYNC_FRAME"
+            ],
+            "description": "ATTACH maps the shared memory segment; SYNC_FRAME requests the latest buffer pointer."
+        },
+        "format": {
+            "type": "string",
+            "enum": [
+                "RGBA_8888",
+                "BGRA_8888",
+                "YUV_420",
+                "NV12"
+            ],
+            "default": "RGBA_8888",
+            "description": "The raw pixel format requested from the Viz compositor."
+        },
+        "frame_sync": {
+            "type": "boolean",
+            "default": true,
+            "description": "If true, blocks the response until the next VSync signal from the browser."
+        }
+    },
+    "required": [
+        "action"
+    ],
+    "outputs": {
+        "type": "object",
+        "properties": {
+            "shm_handle": {
+                "type": "string",
+                "description": "The OS-level shared memory identifier (e.g., /dev/shm/nc_viz_001)."
+            },
+            "buffer_ptr": {
+                "type": "string",
+                "pattern": "^0x[0-9a-fA-F]+$",
+                "description": "The virtual memory address offset for the current frame."
+            },
+            "metadata": {
+                "type": "object",
+                "properties": {
+                    "width": {
+                        "type": "integer"
+                    },
+                    "height": {
+                        "type": "integer"
+                    },
+                    "stride": {
+                        "type": "integer"
+                    },
+                    "timestamp": {
+                        "type": "number",
+                        "description": "High-resolution browser timestamp of frame capture."
+                    }
+                }
+            }
+        }
+    }
+}

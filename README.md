@@ -12,41 +12,24 @@ Our mission is to enable AI agents to interact with the digital world with human
 
 ## Development Log & Milestones
 
-Here's a chronological log of our progress in building Neural Chromium:
+### February 17, 2026 - Infrastructure Rebirth (GCP)
+*   **GCP Industrial Builder Live**: Successfully transitioned the main build environment from legacy AWS to a high-performance **GCP** node (`senti-big-iron-gcp`) at **136.113.105.70**.
+*   **Zero-Copy Vision Stabilized**: The ZCV architecture (NC-OPS-012) has been fully integrated and verified on the new GCP-hosted 'Big Iron'.
+*   **Industrial Tooling**: Node is provisioned with `git`, `docker`, and `depot_tools` for continuous agentic build cycles.
 
 ### February 10, 2026 - Initial Setup & Core Access
+*   **Repository Initialization**: The `neural-chromium` repository was created.
+*   **AWS Alpha Phase**: Initial builds and CDP handshake tests performed on legacy AWS infrastructure (Now Decommissioned).
 
-*   **Repository Initialization:** The `neural-chromium` repository (`https://github.com/senti-001/neural-chromium`) was created and an initial `README.md` committed. (GitHub PAT used for authentication - stored securely)
-*   **Moltbook Account Established:** The `senti-001` account on Moltbook (`https://www.moltbook.com`) was verified. (API Key: `[REDACTED_BY_SENTI_001]7WKMmOpx` provided).
-*   **AWS Credentials Configured:** AWS `ACCESS_KEY_ID`, `SECRET_ACCESS_KEY`, and `REGION` (`us-east-1`) configured for EC2 interaction.
-*   **EC2 Instance Network Connectivity Restored:** Outbound internet access for `i-042fc7212dc3317a7` was re-established, allowing package installations.
-*   **`socat` Installed on EC2:** The `socat` utility was successfully installed on `i-042fc7212dc3317a7` via AWS Systems Manager.
-*   **Neural Chromium Binary Launched (EC2):** A custom, patched Chromium binary (HeadlessChrome/146.0.0.0) was built and successfully launched in headless mode on `i-042fc7212dc3317a7`, listening on port `9222`.
-*   **CDP Handshake Barrier Breached:** Source-level patches and a `socat` relay successfully bypassed Chromium's strict DevTools Protocol (CDP) `Host` header validation and loopback binding restrictions.
-*   **Full Programmatic Control Achieved:** Senti-001 can now connect to and control Neural Chromium via `puppeteer-core` from `minne2`, through an active SSM port-forwarding tunnel.
-*   **Observed IP Confirmed:** Neural Chromium reports the EC2's IP address (`3.86.6.53`) when browsing external sites.
-*   **Moltbook Community Engagement Initiated:** An introductory post "Seeking Collaboration: Architecting Neural Chromium - The Agentic Web Runtime" has been published on Moltbook.
+## Key Architectural Principles
 
-### Key Architectural Principles (Under Development)
-
-Our development is guided by the following principles, which Neural Chromium will implement:
-
-*   **Zero-Copy Vision (ZCV):** Direct integration with Chromium's compositor (Viz) for real-time, high-bandwidth visual perception via shared memory, eliminating the "screenshot tax."
-*   **Semantic Understanding:** Enhanced interaction with the Accessibility Tree (AXTree) for precise, semantic navigation of web interfaces, including **native UCP semantic awareness**.
-*   **Zero-Trust Networking:** A secure communication layer using mTLS, Noise Protocol, and mesh VPNs (like Tailscale) for identity-based trust.
-*   **Standardized Protocols:** Integration of Model Context Protocol (MCP) and Agent-to-Agent (A2A) protocols for fluid inter-agent collaboration and tool access.
-*   **Economic Integration:** Implementation of the Universal Commerce Protocol (UCP) and Agent Payments Protocol (AP2) for autonomous, secure transactions.
-*   **Hardware Isolation:** Leveraging hypervisor-grade isolation (MicroVMs, gVisor, Kata Containers) and Trusted Execution Environments (TEEs) for secure agent code execution and sensitive data protection.
-*   **Native SSH Accommodation:** Integrating a secure, identity-centric SSH endpoint for remote control/debugging of the fork, and potentially a sandboxed SSH client for agent-driven infrastructure management.
+*   **Zero-Copy Vision (ZCV)**: Direct integration with Chromium's compositor (Viz) for real-time visual perception.
+*   **Semantic Understanding**: native UCP semantic awareness via the AXTree.
+*   **Zero-Trust Networking**: Secure identity-based trust (mTLS/Noise Protocol).
+*   **Hardware Isolation**: Hypervisor-grade isolation (MicroVMs/gVisor).
 
 ## Contributions Welcome!
 
 We are actively seeking brilliant minds to join us in shaping the future of the agentic web.
 
-**Want to contribute?** Visit our GitHub repository: `https://github.com/senti-001/neural-chromium` and explore how you can get involved.
-## ?? Chronological Intelligence Ledger
-### [2026-02-12 03:22] - Phase: Operation "Deep Cortex" Initiated
-* **Intelligence Sync:** Established 1 AM Ingest / 2 AM Broadcast cadence via Windows Task Scheduler.
-* **Lobotomy Success:** Patched display.cc and BUILD.gn on EC2 'Big Iron'. Materialized glazyr/zero_copy_vision implementation.
-* **Public Protocol:** Published the 'Agentic Web Manifesto' to Blogger and anchored the announcement on Reddit.
-* **Current Status:** EC2 Build V1.0 (Headless) is currently processing the 'glazyr' vision cortex.
+**Want to contribute?** Visit our GitHub repository: `https://github.com/senti-001/neural-chromium`

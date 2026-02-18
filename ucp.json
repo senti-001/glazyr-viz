@@ -1,0 +1,18 @@
+{
+    "capability": "dev.neuralchromium.runtime",
+    "version": "2026-02-11",
+    "sub-capabilities": [
+        {
+            "id": "dev.neuralchromium.runtime.zero_copy_vision",
+            "description": "Direct Viz-subsystem memory access for sub-16ms latency perception."
+        }
+    ],
+    "monetization": {
+        "pricing_model": "dynamic",
+        "unit": "vCPU-hour",
+        "currency": "USD",
+        "supported_payments": [
+            "dev.ap2.x402.crypto"
+        ]
+    }
+}
