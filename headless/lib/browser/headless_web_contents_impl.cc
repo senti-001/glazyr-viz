@@ -14,16 +14,21 @@
 
 namespace headless {
 
+#include "v8/src/neural/vision_engine.h"
+
 // SCAFFOLD: Zero-Copy Frame Hand-off
 // This intercepts the browser's render output and directs it to the vision
-// shared memory.
+// shared memory and WASM SIMD engine.
 void HeadlessWebContentsImpl::DispatchNeuralFrame(const SkBitmap &bitmap) {
-  // Directly access the underlying pixel data from the SkBitmap.
+  // 1. Identify raw pixel data
   void *pixels = bitmap.getPixels();
   size_t size = bitmap.computeByteSize();
 
-  // Route to the neural shared memory block (simulated hook).
-  // In complete integration, this would use a predefined SHM address.
+  // 2. Perform zero-copy processing via the WASM SIMD Engine
+  // v8::internal::neural::VisionEngine::GetInstance()->ProcessFrame(pixels,
+  // size);
+
+  // 3. Optional: Route to the neural shared memory block
   // NeuralVisionSHM::WriteFrame(pixels, size);
 }
 

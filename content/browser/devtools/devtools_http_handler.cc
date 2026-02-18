@@ -17,9 +17,13 @@ namespace content {
 // SCAFFOLD: QUIC Listener Hook
 // This enables UDP/QUIC listener for the DevTools port.
 void DevToolsHttpHandler::InitializeNeuralQuicListener(int port) {
-  // Instantiate the neural dual-transport server.
-  // This will handle both legacy WebSocket and the new high-performance QUIC
-  // streams. transport_server_ = std::make_unique<NeuralTransportServer>(port);
+  // Check for the high-performance command line flag
+  // if (base::CommandLine::ForCurrentProcess()->HasSwitch("high-performance"))
+  // { Instantiate the neural dual-transport server. This will handle both
+  // legacy WebSocket and the new high-performance QUIC streams.
+  // transport_server_ = std::make_unique<NeuralTransportServer>(port);
+  // transport_server_->EnableNeuralQuicTransport(true);
+  // }
 }
 
 } // namespace content
