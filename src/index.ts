@@ -112,7 +112,9 @@ const createServer = () => {
 // Initialize Express for SSE transport
 const app = express();
 app.use(cors());
-app.use(express.json()); // Essential for handling POST messages
+// NOTE: Do NOT use express.json() here — the MCP SDK's SSEServerTransport
+// handles body parsing internally. Adding express.json() consumes the stream
+// before handlePostMessage can read it, causing "stream is not readable".
 
 // Map to store active transports by session ID
 const transports = new Map<string, SSEServerTransport>();

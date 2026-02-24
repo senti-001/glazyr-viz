@@ -1,5 +1,4 @@
 node_modules/
-dist/
-.env
+package-lock.json
 *.log
-blogger_token.json
+.env
