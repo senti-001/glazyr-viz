@@ -1,0 +1,30 @@
+{
+    "name": "glazyrviz",
+    "version": "0.1.1",
+    "type": "module",
+    "bin": {
+        "glazyrviz": "./dist/index.js"
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "scripts": {
+        "build": "tsc",
+        "start": "tsx src/index.ts",
+        "start:prod": "NODE_ENV=production node dist/index.js",
+        "dev": "tsx watch src/index.ts"
+    },
+    "dependencies": {
+        "@modelcontextprotocol/sdk": "latest",
+        "cors": "latest",
+        "express": "latest",
+        "zod": "latest"
+    },
+    "devDependencies": {
+        "@types/cors": "latest",
+        "@types/express": "latest",
+        "@types/node": "latest",
+        "tsx": "latest",
+        "typescript": "latest"
+    }
+}
