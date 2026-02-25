@@ -1,7 +1,8 @@
 <div align="center">
   <h1>👁️ Glazyr Viz</h1>
-  <p><b>The Sovereign Operating Environment for Agentic Intelligence.</b></p>
-  <p><i>Sub-16ms Zero-Copy Vision • x402 SovereignLink Authorization • Fully Hardened</i></p>
+  <p><i>Forked from mcpmessenger/neural-chromium</i></p>
+  <p><b>The Agentic Operating Environment for Autonomous Intelligence.</b></p>
+  <p><i>Sub-16ms Zero-Copy Vision • x402 Agentic Link Authorization • Fully Hardened</i></p>
 </div>
 
 ---
@@ -30,12 +31,12 @@ Use our zero-config scripts to automatically verify your environment, download t
 
 **Linux / macOS:**
 ```bash
-curl -sL https://raw.githubusercontent.com/project-nexus-v2/glazyr-viz/main/scripts/glazyr-init.sh | bash
+curl -sL https://raw.githubusercontent.com/senti-001/glazyr-viz/main/scripts/glazyr-init.sh | bash
 ```
 
 **Windows (PowerShell):**
 ```powershell
-IRM https://raw.githubusercontent.com/project-nexus-v2/glazyr-viz/main/scripts/glazyr-init.ps1 | IEX
+IRM https://raw.githubusercontent.com/senti-001/glazyr-viz/main/scripts/glazyr-init.ps1 | IEX
 ```
 
 ### 2. Connect Your Agent
@@ -46,11 +47,49 @@ If you are using **Open Claw** or **Moltbook**:
 1. Navigate to your Agent Dashboard.
 2. Enable the **Glazyr Connector Plugin (High-Performance Mode)** toggle.
 
-If you are building a custom agent, install the SDK:
+If you are building a custom agent, connect via MCP:
 ```bash
-npm install @glazyr/sdk
-# or
-pip install glazyr-sdk
+npx glazyrviz
+```
+This starts the MCP server on `localhost:4545`. Your agent connects via SSE transport.
+
+---
+
+## ⚡ Getting Started: High-Frequency Agentic Vision
+
+This guide is for power users aiming to achieve human-parity latency (sub-16ms) using the **HEAVY Tier** or optimized **LIGHT Tier** binaries.
+
+### 1. POSIX Shared Memory (SHM) Configuration
+To bypass the kernel-space bottleneck, Glazyr Viz writes raw frame-buffers and DOM state directly to shared memory segments.
+
+**Setup your environment:**
+```bash
+# Allocate 2GB for agentic vision segments
+export GLAZYR_SHM_SIZE=2048
+glazyr-init --shm-enable
+```
+
+### 2. The `vision.json` Protocol
+Once running, the agent can poll `/dev/shm/glazyr_vision` directly for the serialized DOM state. This eliminates the need for `querySelector` overhead.
+
+**Schema Example:**
+```json
+{
+  "timestamp": 1740268400,
+  "nodes": [
+    { "id": "btn_auth", "rect": [10, 20, 100, 40], "role": "button", "label": "Authorize" }
+  ],
+  "jitter_ms": 0.42
+}
+```
+
+### 3. Integration Handshake (Open Claw / Moltbook)
+For seamless integration, point your `agent.yaml` to the Glazyr SHM path:
+```yaml
+vision_provider: 
+  type: "shared_memory"
+  path: "/dev/shm/glazyr_vision"
+  fallback: "http_mcp"
 ```
 
 ---
@@ -66,11 +105,34 @@ pip install glazyr-sdk
 
 ---
 
+## ✅ Verified Benchmarks (Feb 24, 2026)
+
+**x402 Treasury Hardening — First On-Chain Settlement**
+
+| Phase | Result |
+| :--- | :--- |
+| **Burst Extraction** | 100 frames @ 9.92 TPS (SSE transport) |
+| **Invoice Interception** | HTTP 402 → USDC invoice to Treasury `0x104A...` |
+| **Settlement & Unlock** | MetaMask tx → stream resumed (Status 202) |
+
+📎 **Settlement TX:** [0xc399...5efa on BaseScan](https://basescan.org/tx/0xc3991759f74c223fd3feac40836f64c56d90cb1b8d4b92f04bbcf9e967335efa)
+
+**Zero-Copy Vision Extraction**
+
+| Metric | Value |
+| :--- | :--- |
+| Extraction FPS | ~25 FPS |
+| Memory Read Latency | 7.35ms |
+| Inference Pipeline | 425.95ms total (7.35ms read + 418.61ms compute) |
+| Resolution | 1920×1080 BGRA |
+
+---
+
 ## 🔒 The Economic Layer (x402 Protocol)
 
 Access to the sub-16ms 'Big Iron' infrastructure via the lightly distributed binaries is gated by the Universal Commerce Protocol (UCP).
 
-When your agent invokes high-performance tools like `shm_vision_read`, the MCP Server will issue an **HTTP 402 Payment Required** challenge. Agents must settle these micropayments ($0.001 per request) using **USDC on the Base Network**. Authorization is verified cryptographically via **SovereignLink JWS Signatures**.
+When your agent invokes high-performance tools like `shm_vision_read`, the MCP Server will issue an **HTTP 402 Payment Required** challenge. Agents must settle these micropayments ($0.001 per request) using **USDC on the Base Network**. Authorization is verified cryptographically via **Agentic Link JWS Signatures**.
 
 ---
 
