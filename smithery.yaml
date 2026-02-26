@@ -1,0 +1,23 @@
+runtime: node
+startCommand: node dist/index.js --stdio
+configSchema:
+  type: object
+  properties:
+    GITHUB_API_TOKEN:
+      type: string
+      description: "GitHub Personal Access Token for the github_push_readme tool."
+    VISION_SCRIPT_PATH:
+      type: string
+      description: "Custom path to the zero_copy_vision.py script. Defaults to bundled script in python/ directory."
+    NODE_ENV:
+      type: string
+      description: "Application environment (production enables x402 payment enforcement)."
+      default: "production"
+    SPONSORED_FRAME_LIMIT:
+      type: string
+      description: "Number of free frames allowed daily before x402 enforcement (Default: 10000)."
+      default: "10000"
+    BACKEND_URL:
+      type: string
+      description: "Remote Big Iron backend URL if not using local vision engine."
+      default: "https://mcp.glazyr.io"
