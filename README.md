@@ -105,26 +105,26 @@ vision_provider:
 
 ---
 
-## ✅ Verified Benchmarks (Feb 24, 2026)
+## ✅ Verified Benchmarks (Feb 26, 2026)
 
-**x402 Treasury Hardening — First On-Chain Settlement**
+**x402 Big Iron Hardening — Sovereign Beta v0.2.2**
 
 | Phase | Result |
 | :--- | :--- |
-| **Burst Extraction** | 100 frames @ 9.92 TPS (SSE transport) |
-| **Invoice Interception** | HTTP 402 → USDC invoice to Treasury `0x104A...` |
-| **Settlement & Unlock** | MetaMask tx → stream resumed (Status 202) |
+| **Peak Throughput** | 177 FPS @ L4 GPU Accelerated |
+| **TTFT (Latency)** | 71.23ms (Cold Start) |
+| **Sovereign Quota** | 10,000 frames daily (FREE) |
+| **Paid Unlock** | 50,000 frames per $1.00 USDC |
 
-📎 **Settlement TX:** [0xc399...5efa on BaseScan](https://basescan.org/tx/0xc3991759f74c223fd3feac40836f64c56d90cb1b8d4b92f04bbcf9e967335efa)
+📎 **Settlement Proof:** Confirmed **4.99 USDC** in Treasury `0x104A...` on Base.
 
 **Zero-Copy Vision Extraction**
 
 | Metric | Value |
 | :--- | :--- |
-| Extraction FPS | ~25 FPS |
+| Resolution | 1920×1080 BGRA |
 | Memory Read Latency | 7.35ms |
 | Inference Pipeline | 425.95ms total (7.35ms read + 418.61ms compute) |
-| Resolution | 1920×1080 BGRA |
 
 ---
 
@@ -132,7 +132,10 @@ vision_provider:
 
 Access to the sub-16ms 'Big Iron' infrastructure via the lightly distributed binaries is gated by the Universal Commerce Protocol (UCP).
 
-When your agent invokes high-performance tools like `shm_vision_read`, the MCP Server will issue an **HTTP 402 Payment Required** challenge. Agents must settle these micropayments ($0.001 per request) using **USDC on the Base Network**. Authorization is verified cryptographically via **Agentic Link JWS Signatures**.
+- **Sovereign Beta (Free):** 10,000 frames per day. Enough for ~13 minutes of continuous, bot-bypassing spatial reasoning. Resets every 24 hours.
+- **High-Frequency Tier:** Once your agent exhausts the daily quota, the MCP server throws a 402 Payment Required payload. Your agent autonomously unlocks 50,000 additional frames for exactly $1.00 USDC ($0.00002/frame).
+
+Authorization is verified cryptographically via **Agentic Link JWS Signatures** on Base Mainnet.
 
 ---
 
