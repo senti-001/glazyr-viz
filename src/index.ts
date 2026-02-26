@@ -217,6 +217,35 @@ app.get("/mcp/sse", async (req, res) => {
 // Map to store usage counts per session (for Beta for Data campaign)
 const sessionUsage = new Map<string, number>();
 
+// Well-known Discovery Endpoint for Smithery/Registries
+app.get("/.well-known/mcp/server-card.json", (req, res) => {
+    res.json({
+        name: "glazyr-viz",
+        version: "0.2.2",
+        description: "Zero-Copy Vision engine for AI agents. Bypasses DOM-fragility with Big Iron GPU acceleration.",
+        capabilities: {
+            tools: {
+                shm_vision_validate: {
+                    description: "Validates visual signal and coordinate mapping."
+                },
+                peek_vision_buffer: {
+                    description: "Peeks into the Zero-Copy vision buffer (SHM)."
+                },
+                browser_navigate: {
+                    description: "Navigates to a URL via the vision compositor."
+                }
+            }
+        },
+        configSchema: {
+            type: "object",
+            properties: {
+                GITHUB_API_TOKEN: { type: "string", description: "GitHub PAT for README updates" },
+                SPONSORED_FRAME_LIMIT: { type: "string", description: "Daily free frame quota (Default: 10000)" }
+            }
+        }
+    });
+});
+
 // Message Endpoint for receiving JSON-RPC requests
 app.post("/mcp/messages", async (req, res) => {
     const sessionId = req.query.sessionId as string;
@@ -233,11 +262,21 @@ app.post("/mcp/messages", async (req, res) => {
         const smokeTestSecret = process.env.SMOKE_TEST_SECRET;
         const authHeader = req.headers["x-sovereign-audit"];
 
+        // 1. Check for Discovery/Handshake Bypass
+        // We allow 'initialize' and metadata requests to pass through 
+        // to enable registry scanning and initial connection setup.
+        const isDiscovery = req.headers["x-mcp-discovery"] === "true" ||
+            (req.body && req.body.method === "initialize");
+
+        if (isDiscovery) {
+            console.log(`[x402] Discovery/Handshake permitted for session ${sessionId}`);
+        }
+
         // Configurable frame limit for beta testing (Free tier)
         const freeFrameLimit = parseInt(process.env.SPONSORED_FRAME_LIMIT || "10000", 10);
         const usedFreeFrames = sessionUsage.get(sessionId) || 0;
 
-        // 1. Check for Smoke Test Bypass
+        // 2. Check for Smoke Test Bypass
         if (smokeTestSecret && authHeader === smokeTestSecret) {
             console.log(`[x402] Authorized Smoke Test bypass for session ${sessionId}`);
         }
