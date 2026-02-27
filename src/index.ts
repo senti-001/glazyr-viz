@@ -130,24 +130,61 @@ const createServer = () => {
     }, async ({ include_base64 }) => {
         try {
             if (!fs.existsSync(SHM_PATH)) {
-                return { content: [{ type: "text", text: JSON.stringify({ status: "error", error: `SHM buffer ${SHM_PATH} not found. Ensure Glazyr Viz compositor is running.` }) }], isError: true };
+                return {
+                    content: [{ type: "text", text: JSON.stringify({ status: "no-compositor", error: `SHM buffer ${SHM_PATH} not found. Ensure Glazyr Viz compositor is running.` }) }],
+                    isError: true
+                };
             }
 
-            const rawData = fs.readFileSync(SHM_PATH, "utf-8");
-            const visionData = JSON.parse(rawData);
+            const rawBuf = fs.readFileSync(SHM_PATH);
 
-            // Drop the heavy base64 frame if the agent just wants the structured JSON deltas
-            if (!include_base64 && visionData.base64_frame) {
-                delete visionData.base64_frame;
+            // Detect the NeuralChromium binary frame format (magic: 0x4E43524D = "MRCN" LE)
+            const MRCN_MAGIC = 0x4E43524D;
+            if (rawBuf.length >= 32 && rawBuf.readUInt32LE(0) === MRCN_MAGIC) {
+                const width      = rawBuf.readUInt32LE(4);
+                const height     = rawBuf.readUInt32LE(8);
+                const stride     = rawBuf.readUInt32LE(12);
+                const tsUs       = rawBuf.readBigUInt64LE(16);
+                const seqNum     = rawBuf.readUInt32LE(28);
+
+                const visionData: Record<string, unknown> = {
+                    status:          "zero-copy-active",
+                    source:          "Glazyr Viz Zero-Copy Bridge",
+                    resolution:      `${width}x${height}`,
+                    stride,
+                    latest_sequence: seqNum,
+                    timestamp_us:    tsUs.toString(),
+                    buffer_bytes:    rawBuf.length,
+                };
+
+                if (include_base64 && rawBuf.length > 256) {
+                    visionData.base64_frame = rawBuf.slice(256).toString("base64");
+                }
+
+                return { content: [{ type: "text", text: JSON.stringify(visionData, null, 2) }] };
             }
 
-            // Add Antigravity-specific metadata for the agent
-            visionData.source = "Glazyr Viz Zero-Copy Bridge";
-            visionData.latency_ms = 7.35;
-
-            return { content: [{ type: "text", text: JSON.stringify(visionData, null, 2) }] };
+            // Attempt JSON parse for development/mock buffers
+            try {
+                const visionData = JSON.parse(rawBuf.toString("utf-8"));
+                if (!include_base64 && visionData.base64_frame) {
+                    delete visionData.base64_frame;
+                }
+                visionData.source = "Glazyr Viz Zero-Copy Bridge";
+                return { content: [{ type: "text", text: JSON.stringify(visionData, null, 2) }] };
+            } catch {
+                return {
+                    content: [{ type: "text", text: JSON.stringify({
+                        status: "unrecognized-buffer",
+                        error:  "SHM buffer exists but is neither MRCN binary nor valid JSON.",
+                        bytes:  rawBuf.length,
+                        hint:   "Ensure compositor version matches server version."
+                    }) }],
+                    isError: true
+                };
+            }
         } catch (err: any) {
-            return { content: [{ type: "text", text: `Error reading vision buffer: ${err.message}` }], isError: true };
+            return { content: [{ type: "text", text: JSON.stringify({ status: "error", error: err.message }) }], isError: true };
         }
     });
 
