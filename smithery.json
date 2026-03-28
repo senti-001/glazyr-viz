@@ -1,0 +1,6 @@
+{
+    "startCommand": {
+        "type": "sse",
+        "url": "https://mcp.glazyr.com/mcp/sse"
+    }
+}

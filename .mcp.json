@@ -1,0 +1,19 @@
+{
+    "mcpServers": {
+        "glazyrviz": {
+            "command": "node",
+            "args": [
+                "c:/Users/senti/OneDrive/Desktop/Claw/mcp-core/dist/index.js",
+                "--stdio"
+            ],
+            "env": {
+                "NODE_ENV": "production",
+                "BACKEND_URL": "https://mcp.glazyr.com",
+                "GITHUB_API_TOKEN": "YOUR_GITHUB_TOKEN_HERE",
+                "NODE_TLS_REJECT_UNAUTHORIZED": "0",
+                "GCP_REDIS_HOST": "127.0.0.1",
+                "GCP_REDIS_PORT": "6379"
+            }
+        }
+    }
+}

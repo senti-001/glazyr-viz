@@ -1,0 +1,37 @@
+--- 🕵️ USER IDENTITY LIST (LINE-SEPARATED) ---
+
+## Authenticated User Profiles
+Abanoub Nabil <abanoubnabil200016@gmail.com>
+Will Flynn <williamtflynn@gmail.com>
+Senti <sentilabs06@gmail.com>
+N/A <N/A>
+N/A <N/A>
+N/A <N/A>
+N/A <N/A>
+N/A <N/A>
+N/A <N/A>
+N/A <N/A>
+N/A <N/A>
+N/A <N/A>
+pungggi <alessandro.pungitore@gmail.com>
+Protocol Droid <sentilabs02@gmail.com>
+
+## Active Credit Accounts (Usage)
+44c31ba6-17e2-4bd7-824d-391d9fd82f37 : 997,500 frames consumed
+4c519c22-4dc1-42d1-8295-2d7065e0bbed : 2 frames consumed
+a70a4e8d-35b2-4c08-b4ea-e46f66dd1ecb : -69,066 frames consumed
+bced48cc-a58e-4e8f-aed1-9884af51fe93 : 990,000 frames consumed
+e334f6b0-e93b-4818-8130-caaa0c1b7cf7 : 997,500 frames consumed
+stateless-104.22.66.112 : 0 frames consumed
+stateless-104.22.66.113 : 1,000,000 frames consumed
+stateless-104.23.168.60 : 990,000 frames consumed
+stateless-147.92.98.214 : 1,000,000 frames consumed
+stateless-162.158.158.130 : 1,000,000 frames consumed
+stateless-162.159.113.170 : 4 frames consumed
+stateless-162.159.113.171 : 1,000,000 frames consumed
+stateless-162.159.120.224 : 1,000,000 frames consumed
+stateless-162.159.120.225 : 1,000,000 frames consumed
+stateless-172.70.46.246 : 990,000 frames consumed
+stateless-172.71.182.177 : 1,000,000 frames consumed
+stateless-172.71.95.81 : 1,000,000 frames consumed
+stateless-210.39.1.225 : 0 frames consumed

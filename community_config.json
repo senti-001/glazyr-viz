@@ -1,0 +1,8 @@
+{
+    "BACKEND_URL": "http://localhost:3000",
+    "GCP_REDIS_HOST": "127.0.0.1",
+    "GCP_REDIS_PORT": "6379",
+    "MAX_ENTITY_CAP": 1000,
+    "RENDER_MODE": "Local-SwiftShader",
+    "NODE_ENV": "development"
+}

@@ -7,7 +7,7 @@ import os
 from elevenlabs.client import ElevenLabs
 
 # Configuration
-MCP_URL = "http://136.113.105.70:4545" # Production Big Iron IP
+MCP_URL = "http://136.113.105.70:4545" # Production GCP Perception Node IP
 ELEVENLABS_API_KEY = os.environ.get("ELEVENLABS_API_KEY", "your_elevenlabs_api_key_here")
 OPERATOR_VOICE_ID = "Operator_ID" # Placeholder
 USDC_TOKEN_COST = 0.01
@@ -110,7 +110,7 @@ class GlazyrBenchmarker:
 
     def finalize(self):
         self.report_status("Efficiency Gauntlet Complete. Generating Performance Crossover Report.")
-        print("\n--- PERFORMANCE CROSSOVER AUDIT (BIG IRON) ---")
+        print("\n--- PERFORMANCE CROSSOVER AUDIT (GCP Perception Node) ---")
         for tier in ["navigator", "scraper", "quant"]:
             iy = self.calculate_iy(tier)
             avg_l = (sum(self.results[tier]["latency"])/len(self.results[tier]["latency"]))*1000 if self.results[tier]["latency"] else 0

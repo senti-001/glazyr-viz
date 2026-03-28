@@ -1,0 +1,19 @@
+
+=ƒîÉ Connecting to GCP Perception Node MCP at: https://mcp.glazyr.com/mcp/sse
+
+G£à SSE Transport connected!
+
+Found 7 tools on remote GCP Perception Node:
+
+  =ƒöº shm_vision_validate (params: url)
+  =ƒöº github_push_readme (params: repo, path, content, message)
+  =ƒöº reddit_research (params: query)
+  =ƒöº peek_vision_buffer (params: include_base64)
+  =ƒöº browser_navigate (params: url)
+  =ƒöº browser_click (params: x, y)
+  =ƒöº browser_type (params: text)
+
+--- Smoke Test: peek_vision_buffer (remote) ---
+  Error: Unexpected token 'E', "Error read"... is not valid JSON
+
+=ƒÅü HTTP MCP Validation complete.

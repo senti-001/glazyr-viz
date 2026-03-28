@@ -1,0 +1,6 @@
+{
+    "method": "browser_shm_vision_validate",
+    "params": {
+        "url": "https://threejs.org/examples/#webgl_points_random"
+    }
+}

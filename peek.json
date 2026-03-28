@@ -1,0 +1,11 @@
+{
+    "jsonrpc": "2.0",
+    "id": "peek_test_1",
+    "method": "tools/call",
+    "params": {
+        "name": "peek_vision_buffer",
+        "arguments": {
+            "include_base64": false
+        }
+    }
+}
