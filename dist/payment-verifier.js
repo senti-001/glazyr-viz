@@ -53,7 +53,7 @@ const USDC_ADDRESS = '0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913';
 const TREASURY_ADDRESS = '0x104A40D202d40458d8c67758ac54E93024A41B01';
 const MIN_PAYMENT_USDC = 8.0;
 const FRAMES_PER_DOLLAR = 50000;
-const FREE_TIER_GRANT = 1_000_000;
+const FREE_TIER_GRANT = 10_000;
 const client = createPublicClient({
     chain: base,
     transport: http()
